@@ -11,12 +11,13 @@ pipeline = load_model()
 st.title("🔍 Customer Churn Prediction")
 
 # Collect all required features
-gender = st.selectbox("Gender", ["Male", "Female"])
+gender = st.selectbox("Gender", ["Female", "Male"])
 marital_status = st.selectbox("Marital Status", ["Single", "Married", "Divorced", "Widowed"])
-education = st.selectbox("Education Level", ["High School", "Bachelor", "Master", "PhD"])
-occupation = st.selectbox("Occupation", ["Employed", "Unemployed", "Self-Employed", "Retired", "Student"])
-customer_segment = st.selectbox("Customer Segment", ["Premium", "Standard", "Basic"])
-communication_channel = st.selectbox("Preferred Communication Channel", ["Email", "Phone", "SMS"])
+education = st.selectbox("Education Level", ["Bachelor", "High School", "PhD", "Master"])
+occupation = st.selectbox("Occupation", ["Employed", "Unemployed", "Self-Employed", "Student", "Retired"])
+customer_segment = st.selectbox("Customer Segment", ["Standard", "Premium", "Basic"])
+communication_channel = st.selectbox("Preferred Communication Channel", ["Email", "SMS", "Phone"])
+
 
 credit_score = st.slider("Credit Score", 300, 850, 650)
 income = st.number_input("Annual Income", 10000, 500000, 50000)
@@ -50,4 +51,22 @@ input_df = pd.DataFrame({
 # Predict
 if st.button("Predict Churn"):
     prediction = pipeline.predict(input_df)
-    st.success("Prediction: " + ("Customer Will Churn" if prediction[0] == 1 else "Customer Will Not Churn"))
+
+    if prediction[0] == 1:
+        st.markdown(
+            """
+            <div style='background-color:#ffcccc;padding:20px;border-radius:10px'>
+                <h3 style='color:#990000'>🚨 Prediction: Customer Will Churn</h3>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    else:
+        st.markdown(
+            """
+            <div style='background-color:#ccffcc;padding:20px;border-radius:10px'>
+                <h3 style='color:#006600'>✅ Prediction: Customer Will Not Churn</h3>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
