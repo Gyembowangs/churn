@@ -12,11 +12,11 @@ st.title("🔍 Customer Churn Prediction")
 
 # Collect all required features
 gender = st.selectbox("Gender", ["Female", "Male"])
-marital_status = st.selectbox("Marital Status", ["Single", "Married", "Divorced", "Widowed"])
-education = st.selectbox("Education Level", ["Bachelor", "High School", "PhD", "Master"])
+marital_status = st.selectbox("Marital Status", ["Single", "Married", "Divorced"])
+education = st.selectbox("Education Level", ["Bachelor", "High School", "Diploma", "Master"])
 occupation = st.selectbox("Occupation", ["Employed", "Unemployed", "Self-Employed", "Student", "Retired"])
-customer_segment = st.selectbox("Customer Segment", ["Standard", "Premium", "Basic"])
-communication_channel = st.selectbox("Preferred Communication Channel", ["Email", "SMS", "Phone"])
+customer_segment = st.selectbox("Customer Segment", ["Retail", "SME", "Corporate"])
+communication_channel = st.selectbox("Preferred Communication Channel", ["Email","Phone"])
 
 
 credit_score = st.slider("Credit Score", 300, 850, 650)
